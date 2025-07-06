@@ -1,5 +1,9 @@
+<?php
+
 use Utopia\App;
 use Utopia\CLI\Console;
+
+require_once __DIR__ . '/vendor/autoload.php'; // nếu chưa có, cần có để autoload Utopia
 
 App::init(function (array $utopia, array $request, array &$response, array $args) {
     Console::log('Simple test function started');
@@ -23,3 +27,10 @@ App::init(function (array $utopia, array $request, array &$response, array $args
     $response['json'] = $result;
 
 }, ['utopia', 'request', 'response', 'args']);
+
+App::shutdown(function (array $utopia, array $request, array $response, array $args) {
+    Console::log('Simple test function shutdown');
+}, ['utopia', 'request', 'response', 'args']);
+
+// ✅ DÒNG NÀY BẮT BUỘC
+App::run();
